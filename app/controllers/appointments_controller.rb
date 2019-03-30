@@ -31,6 +31,7 @@ class AppointmentsController < ApplicationController
         format.html { redirect_to @appointment, notice: 'Appointment was successfully created.' }
         format.json { render :show, status: :created, location: @appointment }
       else
+        @appointment.nurse = nil
         format.html { render :new }
         format.json { render json: @appointment.errors, status: :unprocessable_entity }
       end
