@@ -31,10 +31,10 @@ class Patient < ApplicationRecord
     else
       Patient.all
     end
-  else
-    Patient.all
+    else
+      Patient.all
+    end
   end
-end
 
   private
 

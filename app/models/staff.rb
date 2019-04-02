@@ -21,4 +21,17 @@ class Staff < ApplicationRecord
   def to_s
     surname_and_name
   end
+
+  def self.search(search)
+  if search
+    staff = Staff.find_by(surname: search)
+    if staff
+      self.where(id: staff)
+    else
+      Staff.all
+    end
+    else
+      Staff.all
+    end
+  end
 end
