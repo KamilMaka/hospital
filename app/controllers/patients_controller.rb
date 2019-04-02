@@ -5,6 +5,7 @@ class PatientsController < ApplicationController
   # GET /patients.json
   def index
     @patients = Patient.all
+    @patients = Patient.search(params[:search])
   end
 
   # GET /patients/1
@@ -15,6 +16,7 @@ class PatientsController < ApplicationController
   # GET /patients/new
   def new
     @patient = Patient.new
+    @patient.build_address
   end
 
   # GET /patients/1/edit
@@ -25,7 +27,6 @@ class PatientsController < ApplicationController
   # POST /patients.json
   def create
     @patient = Patient.new(patient_params)
-
     respond_to do |format|
       if @patient.save
         format.html { redirect_to @patient, notice: 'Patient was successfully created.' }
@@ -56,8 +57,12 @@ class PatientsController < ApplicationController
   def destroy
     @patient.destroy
     respond_to do |format|
-      format.html { redirect_to patients_url, notice: 'Patient was successfully destroyed.' }
-      format.json { head :no_content }
+      if @patient.destroyed?
+        format.html { redirect_to patients_url, notice: 'Patient was successfully destroyed.' }
+        format.json { head :no_content }
+      else
+      format.html { redirect_to patients_url, notice: @patient.errors.full_messages.join }
+      end
     end
   end
 
@@ -69,6 +74,6 @@ class PatientsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def patient_params
-      params.require(:patient).permit(:name, :surname, :pesel)
+      params.require(:patient).permit(:name, :surname, :pesel, :avatar, :search, address_attributes: [:city, :street_name, :street_no, :postal_code, :id])
     end
 end

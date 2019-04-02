@@ -20,5 +20,25 @@
   <%= @staff.occupation %>
 </p>
 
+<p>
+  <strong>Street:</strong>
+  <%= @staff.address.street_name %>
+</p>
+
+<p>
+  <strong>Street:</strong>
+  <%= @staff.address.street_no %>
+</p>
+
+<p>
+  <strong>Street:</strong>
+  <%= @staff.address.postal_code %>
+</p>
+
+<p>
+  <strong>Street:</strong>
+  <%= @staff.address.city %>
+</p>
+
 <%= link_to 'Edit', edit_staff_path(@staff) %> |
 <%= link_to 'Back', staffs_path %>

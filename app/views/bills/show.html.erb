@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Appointment:</strong>
+  <%= @bill.appointment %>
+</p>
+
+<p>
+  <strong>Paid date:</strong>
+  <%= @bill.paid_date %>
+</p>
+
+<p>Bill Items:
+<ul class="list-group">
+  <% if @bill.bill_items.each do |bill_item| %>
+    <li><%= bill_item.position %></li>
+  <% end.empty? %>
+    No bill items yet
+  <% end %>
+</ul>
+</p>
+
+<%= link_to 'Edit', edit_bill_path(@bill) %> |
+<%= link_to 'Back', bills_path %>
