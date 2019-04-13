@@ -16,7 +16,12 @@
 </p>
 
 <p>
-  <%= image_tag url_for(@patient.avatar) %>
+  <% if @patient.avatar.attached? %>
+    <%= image_tag url_for(@patient.avatar) %>
+    <% else %>
+    No image
+    <% end %>
+
 </p>
 
 <p>
