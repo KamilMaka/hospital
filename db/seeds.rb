@@ -1,9 +1,3 @@
-Bill::HABTM_BillItems.create!([
-  {bill_id: 2, bill_item_id: 1}
-])
-BillItem::HABTM_Bill.create!([
-  {bill_id: 2, bill_item_id: 1}
-])
 Address.create!([
   {addressable_type: "Patient", addressable_id: 1, city: "Żytnia", street_name: "Czysta", street_no: "21", postal_code: "54-098"},
   {addressable_type: "Staff", addressable_id: 1, city: "Ostrowo", street_name: "Cięta", street_no: "54", postal_code: "22-456"},
