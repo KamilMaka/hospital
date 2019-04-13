@@ -1,43 +1,16 @@
-<%= form_with(model: patient, local: true) do |form| %>
-  <% if patient.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(patient.errors.count, "error") %> prohibited this patient from being saved:</h2>
+<%= simple_form_for patient do |form| %>
+    <%= form.error_notification %>
 
-      <ul>
-      <% patient.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+    <%= form.input :name %>
+    <%= form.input :surname %>
+    <%= form.input :pesel %>
+    <%= form.input :avatar %>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
-  </div>
+    <%= form.fields_for :address do |ff| %>
+    <%= render 'addresses/form', form: ff %>
+    <% end %>
 
-  <div class="field">
-    <%= form.label :surname %>
-    <%= form.text_field :surname %>
-  </div>
-
-  <div class="field">
-    <%= form.label :pesel %>
-    <%= form.text_field :pesel %>
-  </div>
-
-  <div class="field">
-    <%= form.label :avatar %>
-    <%= form.file_field :avatar %>
-  </div>
-
-  <%= form.fields_for :address do |ff| %>
-    <%= render 'addresses/form', f: ff %>
-  <% end %>
-
-  <div class="field">
-
-  <div class="actions">
+    <div class="actions">
     <%= form.submit %>
   </div>
 <% end %>

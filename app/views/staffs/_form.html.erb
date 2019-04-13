@@ -1,17 +1,16 @@
-  <%= simple_form_for staff do |form| %>
-          <%= form.error_notification %>
+<%= simple_form_for staff do |form| %>
+    <%= form.error_notification %>
 
-          <%= form.input :name %>
-          <%= form.input :surname %>
-          <%= form.input :pesel %>
-          <%= form.input :occupation, as: :radio_buttons, collection: ['doctor','nurse'], wrapper: :vertical_collection_inline %>
+    <%= form.input :name %>
+    <%= form.input :surname %>
+    <%= form.input :pesel %>
+    <%= form.input :occupation, as: :radio_buttons, collection: ['doctor','nurse'], wrapper: :vertical_collection_inline %>
 
-          <%= form.fields_for :address do |ff| %>
-            <%= render 'addresses/form', form: ff %>
-          <% end %>
+    <%= form.fields_for :address do |ff| %>
+    <%= render 'addresses/form', form: ff %>
+    <% end %>
 
-          <div class="actions">
-            <%= form.submit %>
-          </div>
-        <% end %>
-      
+    <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

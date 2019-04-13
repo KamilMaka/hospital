@@ -1,5 +1,11 @@
-<h1>New Patient</h1>
-
-<%= render 'form', patient: @patient %>
-
-<%= link_to 'Back', patients_path %>
+<div class="row">
+  <div class="col col-lg-6">
+    <div class="card border-success mb-3">
+      <div class="card-header bg-transparent border-success"><h1>New Patient</h1> Wprowadź dane</div>
+      <div class="card-body text">
+        <%= render 'form', patient: @patient %>
+      </div>
+    <div class="card-footer bg-transparent border-success">
+      <%= link_to 'Back', patients_path %></div>
+  </div>
+</div>

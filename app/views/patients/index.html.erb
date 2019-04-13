@@ -8,7 +8,7 @@
   <%= submit_tag ('Search'), name: nil %>
 <% end %>
 
-<table>
+<table class="table">
   <thead>
     <tr>
       <th>Name</th>
@@ -24,9 +24,9 @@
         <td><%= patient.name %></td>
         <td><%= patient.surname %></td>
         <td><%= patient.pesel %></td>
-        <td><%= link_to 'Show', patient %></td>
-        <td><%= link_to 'Edit', edit_patient_path(patient) %></td>
-        <td><%= link_to 'Destroy', patient, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', patient, class: "btn btn-primary" %></td>
+        <td><%= link_to 'Edit', edit_patient_path(patient), class: "btn btn-outline-warning" %></td>
+        <td><%= link_to 'Destroy', patient, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-danger" %></td>
       </tr>
     <% end %>
   </tbody>
