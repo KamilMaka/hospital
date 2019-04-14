@@ -1,9 +1,12 @@
 Rails.application.routes.draw do
 
-  devise_for :users
+  devise_for :users, path: 'auth', path_names: { sign_in: 'login', sign_out: 'logout', registration: 'register', sign_up: 'cmon_let_me_in' }
+  devise_scope :user do
+  get 'sign_in', to: 'devise/sessions#new'
+  end
   root to: "staffs#index"
   resources :bills
-  resources :bill_items   
+  resources :bill_items
   resources :appointments
   resources :reservations
   resources :staffs
