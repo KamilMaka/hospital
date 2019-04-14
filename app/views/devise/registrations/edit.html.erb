@@ -9,6 +9,19 @@
     <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
       <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
     <% end %>
+    <%= f.input :birth_date %>
+    <%= f.input :pesel %>
+    <%= f.input :avatar %>
+    <p>
+      <% if current_user.avatar.attached? %>
+        <%= image_tag url_for(current_user.avatar) %>
+        <% else %>
+        No image
+        <% end %>
+        <%= link_to 'Remove', delete_avatar_attachment_user_url(current_user.id),
+                method: :delete,
+                data: { confirm: 'Are you sure?' } %>
+    </p>
 
     <%= f.input :password,
                 hint: "leave it blank if you don't want to change it",
