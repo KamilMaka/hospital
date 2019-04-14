@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
+
+  devise_for :users
+  root to: "staffs#index"
   resources :bills
-  resources :bill_items
-  get 'addresses/create'
+  resources :bill_items   
   resources :appointments
   resources :reservations
   resources :staffs
