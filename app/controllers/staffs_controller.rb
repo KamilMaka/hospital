@@ -6,8 +6,12 @@ class StaffsController < ApplicationController
   # GET /staffs
   # GET /staffs.json
   def index
-    @staffs = Staff.all
-    @staffs = Staff.search(params[:search])
+    if params["search"].present? && !params["search"]["input_search"].blank?
+      query = "%#{params["search"]["input_search"]}%"
+      @staffs = Staff.where("name ILIKE ? OR surname ILIKE ? OR pesel ILIKE ?", query, query, query)
+    else
+      @staffs = Staff.all
+    end
   end
 
   # GET /staffs/1
