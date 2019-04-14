@@ -1,5 +1,6 @@
 class StaffsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
+  before_action :authenticate_admin, only: [:destroy]
   before_action :set_staff, only: [:show, :edit, :update, :destroy]
 
   # GET /staffs
@@ -69,7 +70,6 @@ class StaffsController < ApplicationController
     def set_staff
       @staff = Staff.find(params[:id])
     end
-
     # Never trust parameters from the scary internet, only allow the white list through.
     def staff_params
       params.require(:staff).permit(:name, :surname, :pesel, :occupation, :search, address_attributes: [:city, :street_name, :street_no, :postal_code, :id])
