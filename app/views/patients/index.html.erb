@@ -26,7 +26,7 @@
         <td><%= patient.pesel %></td>
         <td><%= link_to 'Show', patient, class: "btn btn-primary #{'disabled' unless user_signed_in?}" %></td>
         <td><%= link_to 'Edit', edit_patient_path(patient), class: "btn btn-warning #{'disabled' unless user_signed_in?}" %></td>
-        <td><%= link_to 'Destroy', patient, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger #{'disabled' unless user_signed_in?}" %></td>
+        <td><%= link_to (t :button_destroy), patient, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger #{'disabled' unless user_signed_in?}" %></td>
       </tr>
     <% end %>
   </tbody>
