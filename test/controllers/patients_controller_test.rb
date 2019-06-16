@@ -10,9 +10,9 @@ class PatientsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "should get new" do
+  test "shouldnt get new when not login in" do
     get new_patient_url
-    assert_response :success
+    assert_redirected_to new_user_session_url
   end
 
   test "should create patient" do
@@ -23,19 +23,19 @@ class PatientsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to patient_url(Patient.last)
   end
 
-  test "should show patient" do
+  test "shouldnt show patient when not login in" do
     get patient_url(@patient)
-    assert_response :success
+    assert_redirected_to new_user_session_url
   end
 
-  test "should get edit" do
+  test "shouldnt get edit if not login in" do
     get edit_patient_url(@patient)
-    assert_response :success
+    assert_redirected_to new_user_session_url
   end
 
-  test "should update patient" do
+  test "shouldnt update patient when not login in" do
     patch patient_url(@patient), params: { patient: { name: @patient.name, pesel: @patient.pesel, surname: @patient.surname } }
-    assert_redirected_to patient_url(@patient)
+    assert_redirected_to new_user_session_url
   end
 
   test "should destroy patient" do

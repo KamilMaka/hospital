@@ -12,7 +12,7 @@ class StaffsControllerTest < ActionDispatch::IntegrationTest
 
   test "should get new" do
     get new_staff_url
-    assert_response :success
+    assert_response :redirect
   end
 
   test "should create staff" do
@@ -23,19 +23,19 @@ class StaffsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to staff_url(Staff.last)
   end
 
-  test "should show staff" do
+  test "shouldnt show staff if not login in" do
     get staff_url(@staff)
-    assert_response :success
+    assert_redirected_to new_user_session_url
   end
 
-  test "should get edit" do
+  test "shouldnt get edit if not login in" do
     get edit_staff_url(@staff)
-    assert_response :success
+    assert_redirected_to new_user_session_url
   end
 
-  test "should update staff" do
+  test "shouldnt update staff when not login in" do
     patch staff_url(@staff), params: { staff: { name: @staff.name, occupation: @staff.occupation, pesel: @staff.pesel, surname: @staff.surname } }
-    assert_redirected_to staff_url(@staff)
+    assert_redirected_to new_user_session_url
   end
 
   test "should destroy staff" do

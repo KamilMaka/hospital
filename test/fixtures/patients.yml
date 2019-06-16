@@ -3,9 +3,9 @@
 one:
   name: MyString
   surname: MyString
-  pesel: MyString
+  pesel: 88885221212
 
 two:
-  name: MyString
-  surname: MyString
-  pesel: MyString
+  name: aaa
+  surname: waaa
+  pesel: 88885221213

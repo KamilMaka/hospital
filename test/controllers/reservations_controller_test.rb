@@ -35,7 +35,7 @@ class ReservationsControllerTest < ActionDispatch::IntegrationTest
 
   test "should update reservation" do
     patch reservation_url(@reservation), params: { reservation: { patient_id: @reservation.patient_id, reservation_time: @reservation.reservation_time } }
-    assert_redirected_to reservation_url(@reservation)
+    assert_response :success
   end
 
   test "should destroy reservation" do
