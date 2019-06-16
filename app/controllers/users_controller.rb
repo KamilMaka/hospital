@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
-  
+
   def delete_avatar_attachment
     user = User.find(params[:id])
     user.avatar.purge
