@@ -1,4 +1,6 @@
-require 'test_helper'
+# frozen_string_literal: true
+
+require "test_helper"
 
 class BillItemsControllerTest < ActionDispatch::IntegrationTest
   setup do
@@ -16,7 +18,7 @@ class BillItemsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should create bill_item" do
-    assert_difference('BillItem.count') do
+    assert_difference("BillItem.count") do
       post bill_items_url, params: { bill_item: { name: @bill_item.name, price: @bill_item.price } }
     end
 
@@ -39,7 +41,7 @@ class BillItemsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should destroy bill_item" do
-    assert_difference('BillItem.count', -1) do
+    assert_difference("BillItem.count", -1) do
       delete bill_item_url(@bill_item)
     end
 

@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class PatientsController < ApplicationController
   before_action :authenticate_user!, except: [:index]
-  before_action :set_patient, only: [:show, :edit, :update, :destroy]
+  before_action :set_patient, only: %i[show edit update destroy]
 
   # GET /patients
   # GET /patients.json
@@ -11,8 +13,7 @@ class PatientsController < ApplicationController
 
   # GET /patients/1
   # GET /patients/1.json
-  def show
-  end
+  def show; end
 
   # GET /patients/new
   def new
@@ -21,8 +22,7 @@ class PatientsController < ApplicationController
   end
 
   # GET /patients/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /patients
   # POST /patients.json
@@ -30,7 +30,7 @@ class PatientsController < ApplicationController
     @patient = Patient.new(patient_params)
     respond_to do |format|
       if @patient.save
-        format.html { redirect_to @patient, notice: 'Patient was successfully created.' }
+        format.html { redirect_to @patient, notice: "Patient was successfully created." }
         format.json { render :show, status: :created, location: @patient }
       else
         format.html { render :new }
@@ -44,7 +44,7 @@ class PatientsController < ApplicationController
   def update
     respond_to do |format|
       if @patient.update(patient_params)
-        format.html { redirect_to @patient, notice: 'Patient was successfully updated.' }
+        format.html { redirect_to @patient, notice: "Patient was successfully updated." }
         format.json { render :show, status: :ok, location: @patient }
       else
         format.html { render :edit }
@@ -59,10 +59,10 @@ class PatientsController < ApplicationController
     @patient.destroy
     respond_to do |format|
       if @patient.destroyed?
-        format.html { redirect_to patients_url, notice: 'Patient was successfully destroyed.' }
+        format.html { redirect_to patients_url, notice: "Patient was successfully destroyed." }
         format.json { head :no_content }
       else
-      format.html { redirect_to patients_url, notice: @patient.errors.full_messages.join }
+        format.html { redirect_to patients_url, notice: @patient.errors.full_messages.join }
       end
     end
   end
@@ -75,6 +75,6 @@ class PatientsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def patient_params
-      params.require(:patient).permit(:name, :surname, :pesel, :avatar, :search, address_attributes: [:city, :street_name, :street_no, :postal_code, :id])
+      params.require(:patient).permit(:name, :surname, :pesel, :avatar, :search, address_attributes: %i[city street_name street_no postal_code id])
     end
 end

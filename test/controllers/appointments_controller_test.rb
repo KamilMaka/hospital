@@ -1,4 +1,6 @@
-require 'test_helper'
+# frozen_string_literal: true
+
+require "test_helper"
 
 class AppointmentsControllerTest < ActionDispatch::IntegrationTest
   setup do
@@ -16,7 +18,7 @@ class AppointmentsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should create appointment" do
-    assert_difference('Appointment.count') do
+    assert_difference("Appointment.count") do
       post appointments_url, params: { appointment: { doctor_id: @appointment.doctor_id, nurse_id: @appointment.nurse_id, reservation_id: @appointment.reservation_id } }
     end
 
@@ -39,7 +41,7 @@ class AppointmentsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should destroy appointment" do
-    assert_difference('Appointment.count', -1) do
+    assert_difference("Appointment.count", -1) do
       delete appointment_url(@appointment)
     end
 

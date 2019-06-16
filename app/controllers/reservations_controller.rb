@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class ReservationsController < ApplicationController
-  before_action :set_reservation, only: [:show, :edit, :update, :destroy]
+  before_action :set_reservation, only: %i[show edit update destroy]
 
   # GET /reservations
   # GET /reservations.json
@@ -9,8 +11,7 @@ class ReservationsController < ApplicationController
 
   # GET /reservations/1
   # GET /reservations/1.json
-  def show
-  end
+  def show; end
 
   # GET /reservations/new
   def new
@@ -18,8 +19,7 @@ class ReservationsController < ApplicationController
   end
 
   # GET /reservations/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /reservations
   # POST /reservations.json
@@ -28,7 +28,7 @@ class ReservationsController < ApplicationController
 
     respond_to do |format|
       if @reservation.save
-        format.html { redirect_to @reservation, notice: 'Reservation was successfully created.' }
+        format.html { redirect_to @reservation, notice: "Reservation was successfully created." }
         format.json { render :show, status: :created, location: @reservation }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class ReservationsController < ApplicationController
   def update
     respond_to do |format|
       if @reservation.update(reservation_params)
-        format.html { redirect_to @reservation, notice: 'Reservation was successfully updated.' }
+        format.html { redirect_to @reservation, notice: "Reservation was successfully updated." }
         format.json { render :show, status: :ok, location: @reservation }
       else
         format.html { render :edit }
@@ -56,7 +56,7 @@ class ReservationsController < ApplicationController
   def destroy
     @reservation.destroy
     respond_to do |format|
-      format.html { redirect_to reservations_url, notice: 'Reservation was successfully destroyed.' }
+      format.html { redirect_to reservations_url, notice: "Reservation was successfully destroyed." }
       format.json { head :no_content }
     end
   end

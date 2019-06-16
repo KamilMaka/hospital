@@ -1,4 +1,6 @@
-require 'test_helper'
+# frozen_string_literal: true
+
+require "test_helper"
 
 class PatientsControllerTest < ActionDispatch::IntegrationTest
   setup do
@@ -16,7 +18,7 @@ class PatientsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should create patient" do
-    assert_difference('Patient.count') do
+    assert_difference("Patient.count") do
       post patients_url, params: { patient: { name: @patient.name, pesel: @patient.pesel, surname: @patient.surname } }
     end
 
@@ -39,7 +41,7 @@ class PatientsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should destroy patient" do
-    assert_difference('Patient.count', -1) do
+    assert_difference("Patient.count", -1) do
       delete patient_url(@patient)
     end
 

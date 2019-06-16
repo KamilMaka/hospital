@@ -1,4 +1,6 @@
-require 'test_helper'
+# frozen_string_literal: true
+
+require "test_helper"
 
 class ReservationsControllerTest < ActionDispatch::IntegrationTest
   setup do
@@ -16,7 +18,7 @@ class ReservationsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should create reservation" do
-    assert_difference('Reservation.count') do
+    assert_difference("Reservation.count") do
       post reservations_url, params: { reservation: { patient_id: @reservation.patient_id, reservation_time: @reservation.reservation_time } }
     end
 
@@ -39,7 +41,7 @@ class ReservationsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should destroy reservation" do
-    assert_difference('Reservation.count', -1) do
+    assert_difference("Reservation.count", -1) do
       delete reservation_url(@reservation)
     end
 

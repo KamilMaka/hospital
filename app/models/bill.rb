@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Bill < ApplicationRecord
   belongs_to :appointment
   has_and_belongs_to_many :bill_items
@@ -6,8 +8,6 @@ class Bill < ApplicationRecord
   before_save :set_paid_date
 
   def set_paid_date
-    if self.is_paid_changed? && is_paid == true
-      self.paid_date = DateTime.now
-    end
+    self.paid_date = DateTime.now if is_paid_changed? && is_paid == true
   end
 end

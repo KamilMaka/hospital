@@ -1,7 +1,8 @@
+# frozen_string_literal: true
+
 require "rails_helper"
 
-RSpec.describe User, :type => :model do
-
+RSpec.describe User, type: :model do
   before(:all) do
     @user1 = create(:user)
   end
@@ -41,14 +42,7 @@ RSpec.describe User, :type => :model do
     user2 = build(:random_user, email: email)
     expect(user2).to_not be_valid
   end
-
 end
-
-
-
-
-
-
 
 it "is not valid when pesel is shorter than 11" do
   pesel = "7897"

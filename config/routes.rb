@@ -1,14 +1,15 @@
-Rails.application.routes.draw do
+# frozen_string_literal: true
 
-  devise_for :users, path: 'auth', path_names: { sign_in: 'login', sign_out: 'logout', registration: 'register', sign_up: 'cmon_let_me_in' }
+Rails.application.routes.draw do
+  devise_for :users, path: "auth", path_names: { sign_in: "login", sign_out: "logout", registration: "register", sign_up: "cmon_let_me_in" }
   devise_scope :user do
-  get 'sign_in', to: 'devise/sessions#new'
+    get "sign_in", to: "devise/sessions#new"
   end
   resources :users, only: [:edit] do
     member do
       delete :delete_avatar_attachment
+    end
   end
-end
   root to: "staffs#index"
   resources :bills
   resources :bill_items

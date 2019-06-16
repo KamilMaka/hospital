@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class BillItemsController < ApplicationController
-  before_action :set_bill_item, only: [:show, :edit, :update, :destroy]
+  before_action :set_bill_item, only: %i[show edit update destroy]
 
   # GET /bill_items
   # GET /bill_items.json
@@ -10,8 +12,7 @@ class BillItemsController < ApplicationController
 
   # GET /bill_items/1
   # GET /bill_items/1.json
-  def show
-  end
+  def show; end
 
   # GET /bill_items/new
   def new
@@ -19,8 +20,7 @@ class BillItemsController < ApplicationController
   end
 
   # GET /bill_items/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /bill_items
   # POST /bill_items.json
@@ -29,7 +29,7 @@ class BillItemsController < ApplicationController
 
     respond_to do |format|
       if @bill_item.save
-        format.html { redirect_to @bill_item, notice: 'Bill item was successfully created.' }
+        format.html { redirect_to @bill_item, notice: "Bill item was successfully created." }
         format.js
         format.json { render json: :bill_item, status: :created, location: @bill_item }
       else
@@ -44,7 +44,7 @@ class BillItemsController < ApplicationController
   def update
     respond_to do |format|
       if @bill_item.update(bill_item_params)
-        format.html { redirect_to @bill_item, notice: 'Bill item was successfully updated.' }
+        format.html { redirect_to @bill_item, notice: "Bill item was successfully updated." }
         format.json { render :show, status: :ok, location: @bill_item }
       else
         format.html { render :edit }
@@ -58,7 +58,7 @@ class BillItemsController < ApplicationController
   def destroy
     @bill_item.destroy
     respond_to do |format|
-      format.html { redirect_to bill_items_url, notice: 'Bill item was successfully destroyed.' }
+      format.html { redirect_to bill_items_url, notice: "Bill item was successfully destroyed." }
       format.json { head :no_content }
     end
   end

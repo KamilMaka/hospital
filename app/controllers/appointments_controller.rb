@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class AppointmentsController < ApplicationController
-  before_action :set_appointment, only: [:show, :edit, :update, :destroy]
+  before_action :set_appointment, only: %i[show edit update destroy]
 
   # GET /appointments
   # GET /appointments.json
@@ -9,8 +11,7 @@ class AppointmentsController < ApplicationController
 
   # GET /appointments/1
   # GET /appointments/1.json
-  def show
-  end
+  def show; end
 
   # GET /appointments/new
   def new
@@ -18,8 +19,7 @@ class AppointmentsController < ApplicationController
   end
 
   # GET /appointments/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /appointments
   # POST /appointments.json
@@ -28,7 +28,7 @@ class AppointmentsController < ApplicationController
 
     respond_to do |format|
       if @appointment.save
-        format.html { redirect_to @appointment, notice: 'Appointment was successfully created.' }
+        format.html { redirect_to @appointment, notice: "Appointment was successfully created." }
         format.json { render :show, status: :created, location: @appointment }
       else
         @appointment.nurse = nil
@@ -43,7 +43,7 @@ class AppointmentsController < ApplicationController
   def update
     respond_to do |format|
       if @appointment.update(appointment_params)
-        format.html { redirect_to @appointment, notice: 'Appointment was successfully updated.' }
+        format.html { redirect_to @appointment, notice: "Appointment was successfully updated." }
         format.json { render :show, status: :ok, location: @appointment }
       else
         format.html { render :edit }
@@ -57,7 +57,7 @@ class AppointmentsController < ApplicationController
   def destroy
     @appointment.destroy
     respond_to do |format|
-      format.html { redirect_to appointments_url, notice: 'Appointment was successfully destroyed.' }
+      format.html { redirect_to appointments_url, notice: "Appointment was successfully destroyed." }
       format.json { head :no_content }
     end
   end

@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 class Patient < ApplicationRecord
   before_destroy do
     add_errors_if_unpaid
     throw(:abort) if errors.present?
   end
-  #https://medium.com/appaloosa-store-engineering/caution-when-using-before-destroy-with-model-association-71600b8bfed2
-  #uwaga na before_destroy (opis w linku wyżej)
+  # https://medium.com/appaloosa-store-engineering/caution-when-using-before-destroy-with-model-association-71600b8bfed2
+  # uwaga na before_destroy (opis w linku wyżej)
 
   has_one :address, as: :addressable, dependent: :destroy
   has_many :reservations, dependent: :destroy
@@ -24,25 +26,24 @@ class Patient < ApplicationRecord
   end
 
   def self.search(search)
-  if search
-    patient = Patient.find_by(surname: search)
-    if patient
-      self.where(id: patient)
-    else
-      Patient.all
-    end
+    if search
+      patient = Patient.find_by(surname: search)
+      if patient
+        where(id: patient)
+      else
+        Patient.all
+      end
     else
       Patient.all
     end
   end
 
   private
+    def add_errors_if_unpaid
+      errors.add(:base, "Cannot delete patient with unpaid bills") if any_unpaid_bill_exists?
+    end
 
-  def add_errors_if_unpaid
-    errors.add(:base, 'Cannot delete patient with unpaid bills') if any_unpaid_bill_exists?
-  end
-
-  def any_unpaid_bill_exists?
-    reservations.joins(:bill).where('bills.is_paid = false').exists?
-  end
+    def any_unpaid_bill_exists?
+      reservations.joins(:bill).where("bills.is_paid = false").exists?
+    end
 end

@@ -1,8 +1,9 @@
+# frozen_string_literal: true
+
 class Reservation < ApplicationRecord
   belongs_to :patient
   has_one :appointment, dependent: :destroy
   has_one :bill, through: :appointment
-  
 
   validates_presence_of :reservation_time
   validate :reservation_time_cannot_be_in_the_past

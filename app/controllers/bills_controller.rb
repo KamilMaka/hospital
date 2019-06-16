@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class BillsController < ApplicationController
-  before_action :set_bill, only: [:show, :edit, :update, :destroy]
+  before_action :set_bill, only: %i[show edit update destroy]
 
   # GET /bills
   # GET /bills.json
@@ -9,8 +11,7 @@ class BillsController < ApplicationController
 
   # GET /bills/1
   # GET /bills/1.json
-  def show
-  end
+  def show; end
 
   # GET /bills/new
   def new
@@ -18,8 +19,7 @@ class BillsController < ApplicationController
   end
 
   # GET /bills/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /bills
   # POST /bills.json
@@ -28,7 +28,7 @@ class BillsController < ApplicationController
 
     respond_to do |format|
       if @bill.save
-        format.html { redirect_to @bill, notice: 'Bill was successfully created.' }
+        format.html { redirect_to @bill, notice: "Bill was successfully created." }
         format.json { render :show, status: :created, location: @bill }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class BillsController < ApplicationController
   def update
     respond_to do |format|
       if @bill.update(bill_params)
-        format.html { redirect_to @bill, notice: 'Bill was successfully updated.' }
+        format.html { redirect_to @bill, notice: "Bill was successfully updated." }
         format.json { render :show, status: :ok, location: @bill }
       else
         format.html { render :edit }
@@ -56,7 +56,7 @@ class BillsController < ApplicationController
   def destroy
     @bill.destroy
     respond_to do |format|
-      format.html { redirect_to bills_url, notice: 'Bill was successfully destroyed.' }
+      format.html { redirect_to bills_url, notice: "Bill was successfully destroyed." }
       format.json { head :no_content }
     end
   end
@@ -69,6 +69,6 @@ class BillsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def bill_params
-      params.require(:bill).permit(:appointment_id, :is_paid, {bill_item_ids: []})
+      params.require(:bill).permit(:appointment_id, :is_paid, bill_item_ids: [])
     end
 end
